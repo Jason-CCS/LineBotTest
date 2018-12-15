@@ -18,13 +18,14 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('bmOpRF6paRIURucgqrm6TeWoWQH43m1kdI6zFXMYvgW4uVEaBE2pIkFdqeiDsVM4zH0jlyEMCXVuLoDv6mRZ3/PfZTN8RIMdK07p7chViDfBC1OKjV0L8kgWVFhu1fkHmdh5WsRBf89TBgOxbuYe2QdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('FX6hoN+w4yCvk1rpcKAmOedQ2u+I3A6KxkFId/R2BKbGVIEF7gNwa2UjnHqxkhxaS+nEORS5HFcg/5U0O+OGWRvk6OiF7cAU5G4rfW2Cw/ga+aeG4E2PbzJhN2OecXZ1PMUQOLXZxOjCVRSYBcYNvQdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('ad05913ee0319c600ebdb3c9882d79f4')
+handler = WebhookHandler('a0cc121b226498a53c403b267664faf6')
 # heroku logs --tail --app timothyslinebot
 
 
 def movie():
+    print("in movie def")
     target_url = 'https://movies.yahoo.com.tw/'
     res = requests.get(target_url)
     res.encoding = 'utf-8'
@@ -67,6 +68,7 @@ def callback():
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
+        print("except")
         abort(400)
     return 'OK'
 
@@ -78,6 +80,7 @@ def handle_message(event):
     if event.message.text == 'hi':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text = 'helasdslo'))
     elif event.message.text == 'movie':
+        print("in movie")
         a = movie()
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = a))
     elif event.message.text == "videos":
