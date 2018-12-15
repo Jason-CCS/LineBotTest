@@ -1,4 +1,4 @@
 line-bot-sdk
 flask
 bs4
-urllib
+urllib3
