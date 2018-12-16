@@ -94,6 +94,7 @@ def users():
     content = ""
     for r in results:
         content += 'id:{}, name:{}, 餘額:{}\n'.format(r[0], r[1], r[2])
+    return content
 
 # def movie():
 #     r = requests.get('https://tw.yahoo.com/')
@@ -134,7 +135,6 @@ def handle_message(event):
     if event.message.text == 'hi':
         line_bot_api.reply_message(event.reply_token,TextSendMessage(text = 'helasdslo'))
     elif event.message.text == 'movie':
-        print("in movie")
         a = movie()
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text = a))
     elif event.message.text == "videos":
@@ -142,8 +142,7 @@ def handle_message(event):
     elif event.message.text == "emoji":
         line_bot_api.reply_message(event.reply_token,StickerSendMessage(package_id=1, sticker_id=2))
     elif event.message.text=='users':
-        users()
-
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text = users()))
     else:
         line_bot_api .reply_message(event.reply_token,TextSendMessage(text=event.message.text))
 
