@@ -41,7 +41,7 @@ def get_db():
         exists = bool(result) 
         app.logger.info(exists) # print bool(result)
 
-        if !exists:
+        if not(exists):
             # 如果schema.sql還沒run，那當然查不到表，所以不存在就init db
             init_db(db)
     return db
