@@ -33,8 +33,8 @@ def get_db():
         # 這邊確認db當中的資料是否初始化
         c=db.cursor() # 啟動游標，我也不知道這三小，似乎select一定要用cursor obj
         # 查詢table 'roles' 是否存在
-        table_name ="roles"
-        c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name=?;", table_name)
+        table_name ="users"
+        c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users';")
         result=c.fetchone()
 
         app.logger.info(result) # print log
